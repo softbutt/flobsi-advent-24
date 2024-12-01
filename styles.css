@@ -16,7 +16,6 @@ body {
     background-position: center;
     background-size: cover;
     box-sizing: border-box;
-    padding: 10px;
     margin: 0;
 }
 header {
@@ -35,17 +34,16 @@ header p {
     margin-top: 10px;
 }
 .calendar {
-    margin-top: 81px;
-    box-sizing: border-box;
     position: relative;
-    width:100%;
-    max-width: 1800px;
     height: calc(100% - 81px);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 81px;
     overflow-y: auto;
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(1, 1fr);
-    z-index: 1;
 }
 .calendar footer {
     grid-column: 1/-1;
