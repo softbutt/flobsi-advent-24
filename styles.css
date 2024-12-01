@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(imgs/background-small.jpg);
+    background-image: url(imgs/background_small.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: auto;
