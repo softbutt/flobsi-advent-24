@@ -4,9 +4,11 @@ body {
     margin: 0;
     padding: 0;
     width: 390px;
+    height: 100%;
 }
 .background {
     position: relative;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
     margin: 0;
