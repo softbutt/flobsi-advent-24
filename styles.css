@@ -3,6 +3,7 @@ body {
     font-size: 1rem;
     margin: 0;
     padding: 0;
+    width: 390px;
 }
 .background {
     position: relative;
@@ -44,6 +45,9 @@ body {
     margin-bottom: 100px;
 }
 @media (min-width: 768px) {
+    body {
+        width: 100%;
+    }
     .calendar {
         grid-template-columns: repeat(6, 1fr);
     }
