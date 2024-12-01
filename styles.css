@@ -1,58 +1,59 @@
+html { 
+    height:100%;
+    color: white;
+}
 body {
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    right:0; 
+    left:0;
     font-family: Arial, sans-serif;
     font-size: 1rem;
-    margin: 0;
-    padding: 0;
-    width: 390px;
-    height: 100%;
-}
-.background {
-    position: relative;
-    overflow-y: auto;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url(imgs/background_small.jpg);
+    text-align: center;
+    background-image: url(imgs/background.jpg);
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: auto;
     background-position: center;
-    opacity: 0.7;
-    z-index: 0;
+    background-size: cover;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
 }
-.background h1 {
-    margin: 20px;
-    color: white;
-    text-align: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 81px;
+    background: rgba(0, 0, 0, 0.6);
 }
-.background h2 {
-    color: white;
-    text-align: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+header h1 {
+    margin: 0;
+}
+header p {
+    margin: 0;
+    margin-top: 10px;
 }
 .calendar {
+    margin-top: 81px;
+    box-sizing: border-box;
+    position: relative;
+    width:100%;
+    max-width: 1800px;
+    height: calc(100% - 81px);
+    overflow-y: auto;
     display: grid;
     gap: 10px;
-    width: 90%;
-    max-width: 1800px;
-    grid-template-columns: reperepeat(24, 1fr);
-    position: relative;
+    grid-template-columns: repeat(1, 1fr);
     z-index: 1;
-    margin-bottom: 100px;
+}
+.calendar footer {
+    grid-column: 1/-1;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding-bottom: 50px;
 }
 @media (min-width: 768px) {
-    body {
-        width: 100%;
-    }
-    .background {
-        background-image: url(imgs/background.jpg);
-    }
     .calendar {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -71,7 +72,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     width: 100%;
     min-width: 300px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 .card-content {
@@ -94,4 +95,5 @@ body {
 }
 .card.flipped {
     transform: rotateY(180deg);
+    background: rgba(0, 0, 0, 0.8);
 }
