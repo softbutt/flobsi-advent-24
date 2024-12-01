@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(imgs/background.jpg);
+    background-image: url(imgs/background-small.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: auto;
@@ -47,6 +47,9 @@ body {
 @media (min-width: 768px) {
     body {
         width: 100%;
+    }
+    .background {
+        background-image: url(imgs/background.jpg);
     }
     .calendar {
         grid-template-columns: repeat(6, 1fr);
