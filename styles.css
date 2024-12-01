@@ -54,7 +54,7 @@ body {
         background-image: url(imgs/background.jpg);
     }
     .calendar {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 .card {
@@ -70,7 +70,9 @@ body {
     aspect-ratio: 1 / 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     width: 100%;
+    min-width: 300px;
     background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
 }
 .card-content {
     position: absolute;
@@ -85,7 +87,10 @@ body {
     transform: rotateY(180deg);
 }
 .card .back img {
-    max-width: 50%;
+    max-height: 150px;
+    height: 50%;
+    width: auto;
+    border-radius: 10px;
 }
 .card.flipped {
     transform: rotateY(180deg);

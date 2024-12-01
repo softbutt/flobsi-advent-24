@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>&#128012;'s Adventskalendar 2024</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <div class="background">
         <h1>&#128012;'s Adventskalendar 2024</h1>
         <h2 id="date"></h2>
         <div class="calendar">
-            <div class="card" data-day="5">
-                <div class="card-content front">5</div>
+            <div class="card" id="clone-master">
+                <div class="card-content front"></div>
                 <div class="card-content back">
-                    <h2>Tag 5 🧼</h2>
-                    <img src="imgs/5.jpeg">
+                    <h2><span class="day"></span> <span class="category"></span></h2>
+                    <img class="img">
+                    <h3 class="title"></h3>
+                    <label class="description"></label>
                 </div>
             </div>
+
+<!-- 
             <div class="card" data-day="24">
                 <div class="card-content front">24</div>
                 <div class="card-content back">
@@ -180,7 +184,7 @@
                     <h2>Tag 17 🍪</h2>
                     <img src="imgs/17.jpeg">
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
