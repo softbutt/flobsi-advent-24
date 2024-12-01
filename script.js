@@ -85,7 +85,7 @@ const createCard = (master, container, present) => {
 
     clone.addEventListener('click', () => {
         if (present.day > todayDate.getDate()) {
-            // return;
+            return;
         }
 
         if(clone.classList.contains('flipped')) {
