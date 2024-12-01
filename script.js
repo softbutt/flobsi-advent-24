@@ -1,9 +1,15 @@
 import presents from './presents.json' with { type: "json" };
 
 const todayDate = new Date();
-const cards = [];
+let testModeEnabled = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const testMode = urlParams.get('test');
+    if(testMode === "true") {
+        testModeEnabled = true;
+    }
+
     initToday();
     initPresents();
 });
@@ -56,7 +62,7 @@ const createCard = (master, container, present) => {
     clone.childNodes[0].innerHTML = present.day;
 
     clone.addEventListener('click', () => {
-        if (present.day > todayDate.getDate()) {
+        if (!testModeEnabled && present.day > todayDate.getDate()) {
             return;
         }
 
