@@ -1,52 +1,46 @@
-import presents from './presents.json' with { type: "json" };
-
-const todayDate = new Date();
+let todaysDayOfMonth = 1;
 let testModeEnabled = false;
 
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const testMode = urlParams.get('test');
     if(testMode === "true") {
         testModeEnabled = true;
     }
 
-    initToday();
-    initPresents();
+    await initToday();
+    await initPresents();
 });
 
-const initToday = () => {
-    const month = todayDate.getMonth() + 1;
-    const year = todayDate.getFullYear();
+const initToday = async () => {
+    const viennaTimeResponse = await fetch("http://worldtimeapi.org/api/timezone/Europe/Vienna");
+    const viennaTimeData = JSON.parse(await viennaTimeResponse.text());
+    const today = new Date(viennaTimeData.datetime);
+
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
 
     if(month !== 12 || year !== 2024) {
         document.getElementsByTagName("body")[0].innerHTML = "<h1>Nicht verfügbar!</h1>";
         return;
     }
 
-    const today = todayDate.getDate();
-    document.getElementById("date").textContent = "am " + today + ". Dezember";
+    todaysDayOfMonth = todayDate.getDate();
+    document.getElementById("date").textContent = "am " + todaysDayOfMonth + ". Dezember";
 }
 
-const initPresents = () => {
-    let currentIndex = presents.length;
-    let temporaryValue, randomIndex;
-    while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+const initPresents = async () => {
+    const presents = await loadPresents();
+    const shuffledPresents = shuffle(presents);
 
-    temporaryValue = presents[currentIndex];
-    presents[currentIndex] = presents[randomIndex];
-    presents[randomIndex] = temporaryValue;
-    };
+    const container = document.getElementsByClassName("calendar")[0];
 
     const cloneMaster = document.getElementById("clone-master");
-    const container = document.getElementsByClassName("calendar")[0];
-    for(const present of presents) {
+    for(const present of shuffledPresents) {
         createCard(cloneMaster, container, present);
     }
     container.removeChild(cloneMaster);
-
-    return presents;
 };
 
 const createCard = (master, container, present) => {
@@ -62,7 +56,7 @@ const createCard = (master, container, present) => {
     clone.childNodes[0].innerHTML = present.day;
 
     clone.addEventListener('click', () => {
-        if (!testModeEnabled && present.day > todayDate.getDate()) {
+        if (!testModeEnabled && present.day > todaysDayOfMonth) {
             return;
         }
 
@@ -88,4 +82,25 @@ const getCategoryEmojy = (category) => {
         case "datenight": return "&#128105;&#127995;&#8205;&#10084;&#65039;&#8205;&#128104;&#127995;";
         default: return "&#127873;";
     }
+}
+
+const shuffle = (array) => {
+    const newArray = JSON.parse(JSON.stringify(JSON.parse(array)));
+    let currentIndex = newArray.length;
+    let temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = newArray[currentIndex];
+        newArray[currentIndex] = newArray[randomIndex];
+        newArray[randomIndex] = temporaryValue;
+    }
+    return newArray;
+}
+
+const loadPresents = async () => {
+    const presentsResponse = await fetch('./presents.json');
+    const presents = await presentsResponse.text();
+    return presents;
 }
