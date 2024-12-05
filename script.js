@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const initToday = async () => {
-    const viennaTimeResponse = await fetch("http://worldtimeapi.org/api/timezone/Europe/Vienna");
+    const viennaTimeResponse = await fetch("https://timeapi.io/api/time/current/zone?timeZone=Europe/Vienna");
     const viennaTimeData = JSON.parse(await viennaTimeResponse.text());
-    const today = new Date(viennaTimeData.datetime);
+    const today = new Date(viennaTimeData.dateTime);
 
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
@@ -26,7 +26,7 @@ const initToday = async () => {
         return;
     }
 
-    todaysDayOfMonth = todayDate.getDate();
+    todaysDayOfMonth = today.getDate();
     document.getElementById("date").textContent = "am " + todaysDayOfMonth + ". Dezember";
 }
 
@@ -41,6 +41,7 @@ const initPresents = async () => {
         createCard(cloneMaster, container, present);
     }
     container.removeChild(cloneMaster);
+    container.classList.remove("loading");
 };
 
 const createCard = (master, container, present) => {
